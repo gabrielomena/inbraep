@@ -40,10 +40,13 @@ class TasksService{
     public static function deleteTask($id)
     {
         try {
+            DB::beginTransaction();
             $task = Tasks::findOrFail($id);
             $task->delete();
+            DB::commit();
             return true;
         }catch (\Exception $e){
+            DB::rollBack();
             return false;
         }
     }
