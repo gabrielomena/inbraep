@@ -1,53 +1,76 @@
 <?php
 
 namespace App\Services;
-use App\Models\Tasks;
+use App\Models\Task;
+use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class TasksService{
-    public static function getTasks()
+    public function getTasks (): Object
     {
-        return Tasks::all();
+        return Task::all();
     }
-
-    public static function addTask($task)
+    public function addTask(Array $task): array
     {
         try {
             DB::beginTransaction();
-            $response = Tasks::create($task);
+            $task = Task::create($task);
             DB::commit();
-            return $response;
-        }catch (\Exception $e){
+            return [
+                'data' => $task,
+                'status' => true
+            ];
+        } catch (Exception $e) {
             DB::rollBack();
-            return false;
+            Log::error($e->getMessage());
+            return [
+                'error' => $e->getMessage(),
+                'status' => false
+            ];
         }
     }
 
-    public static function updateTask($data, $task)
+    public function updateTask(Array $data, Task $task): array
     {
         try {
             DB::beginTransaction();
             $task->update($data);
             $task->save();
             DB::commit();
-            return $task;
-        }catch (\Exception $e){
+            return [
+                'data' => $task,
+                'status' => true
+            ];
+        } catch(Exception $e) {
             DB::rollBack();
-            return false;
+            Log::error($e->getMessage());
+            return [
+                'error' => $e->getMessage(),
+                'status' => false
+            ];
         }
     }
 
-    public static function deleteTask($id)
+    public function deleteTask(int $id)
     {
         try {
             DB::beginTransaction();
-            $task = Tasks::findOrFail($id);
+            $task = Task::findOrFail($id);
             $task->delete();
             DB::commit();
-            return true;
-        }catch (\Exception $e){
+            return [
+                'data' => 'Tarefa deletada com sucesso!',
+                'status' => true
+            ];
+        } catch(Exception $e) {
             DB::rollBack();
-            return false;
+            Log::error($e->getMessage());
+            return [
+                'error' => $e->getMessage(),
+                'status' => false
+            ];
         }
     }
 }
