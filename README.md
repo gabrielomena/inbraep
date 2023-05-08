@@ -10,9 +10,9 @@
 
 ## 🛠 Ferramentas
 
--   [PHO7](https://pt-br.reactjs.org/)
+-   [Laravel](https://laravel.com/docs/10.x)
 -   [Vite](https://vitejs.dev/)
--   [VUEJS](https://nodejs.org/en/)
+-   [VUEJS](https://vuejs.org/)
 
 
 ## 💻 Padronização de código
@@ -37,6 +37,10 @@ git clone https://github.com/gabrielomena/inbraep
 ```bash
 cd inbraep/backend
 ```
+### 2.1 Baixe as dependências com composer
+```bash
+composer install
+```
 #### 2.2 Copie o .env-example para .env
 ```bash
 cp .env-example .env
@@ -54,6 +58,47 @@ DB_PASSWORD=
 ```bash
 php artisan key:generate
 ```
+#### 2.5 Crie o banco no seu mysql
+
+#### 2.6 Execute as migrations
+```bash
+php artisan migrate
+```
+### 3. FRONTEND
+#### 3.1 Volte para a pasta do projeto clonado inbraep e acesse a pasta do frontend
+```bash
+cd frontend
+```
+#### 3.2 Instale as dependências
+```bash
+yarn 
+```
+ou 
+```bash
+npm install
+```
+#### 3.3 Acesse o arquivo axios.js na pasta config e altere a baseUrl de acordo com o endereço do servidor backend
+```bash
+cd src/config 
+```
+```bash
+const api = axios.create({
+    baseURL: "https://backend.inbraep/api/",
+    headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+    }
+});
+```
+#### 3.4 volte para a pasta frontend e start o projeto
+```bash
+yarn dev
+```
+ou 
+```bash
+npm run dev
+```
+
 
 ## ✅ Features Desenvolvidas
 
