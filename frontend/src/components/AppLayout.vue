@@ -4,7 +4,7 @@
             <b class="text-white text-center text-lg font-bold">TO-DO LIST INBRAEP</b>
         </div>
     </header>
-    <main class="container mx-auto mt-5">
+    <main class="container mx-auto mt-5 px-2">
         <slot></slot>
     </main>
 </template>

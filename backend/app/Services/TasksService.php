@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 class TasksService{
     public function getTasks (): Object
     {
-        return Task::all();
+        return Task::orderBy('completed','ASC')->orderBy('created_at','ASC')->get();
     }
     public function addTask(Array $task): array
     {
