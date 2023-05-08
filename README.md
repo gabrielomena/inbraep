@@ -1,6 +1,6 @@
 <div align="center">
 	<img src="https://inbraep.com.br/wp-content/uploads/2017/10/cropped-favicon-192x192.png" with="600"/>
-	<h1>FPF - Desafio FullStack</h1>
+	<h1>INBRAEP - Desafio FullStack</h1>
 </div>
 
 ![Badge](https://img.shields.io/badge/Version-1.0.0-%23542F61?style=for-the-badge&logo=appveyor)
