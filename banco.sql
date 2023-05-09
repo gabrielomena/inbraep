@@ -1,0 +1,9 @@
+CREATE DATABASE IF NOT EXISTS inbraep;
+
+USE inbraep;
+
+CREATE TABLE tasks (
+    description VARCHAR(255) NOT NULL,
+    completed BOOLEAN NOT NULL DEFAULT false,
+    timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
